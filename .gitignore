@@ -6,3 +6,8 @@
 .pub/
 
 build/
+example/.flutter-plugins-dependencies
+*.lock
+pubspec.lock
+example/pubspec.lock
+example/.flutter-plugins-dependencies
