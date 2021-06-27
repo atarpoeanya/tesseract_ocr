@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tesseract_ocr/tesseract_ocr.dart';
+import 'package:tesseract_ocr/pos_tagger.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    RaisedButton(
+                    ElevatedButton(
                       child: Text('Select image'),
                       onPressed: () async {
                         var file =
@@ -38,7 +39,8 @@ class _MyAppState extends State<MyApp> {
                         setState(() {});
 
                         var watch = Stopwatch()..start();
-                        _extractText = await TesseractOcr.extractText(file);
+                        var _extractTextOcr = await TesseractOcr.extractText(file);
+                        _extractText = await PosTagger.tagText(_extractTextOcr);
                         _scanTime = watch.elapsedMilliseconds;
 
                         _scanning = false;
