@@ -78,7 +78,26 @@ class _ListScreenState extends State<ListScreen> {
             Center(child: SelectableText(_extractText)),
           ],
         ),
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        onPressed: () async {
+          var file = await FilePicker.getFilePath(type: FileType.image);
+          _scanning = true;
+          setState(() {});
+
+          var watch = Stopwatch()..start();
+          var _extractTextOcr = await TesseractOcr.extractText(file);
+          _extractText = await PosTagger.tagText(_extractTextOcr);
+          _scanTime = watch.elapsedMilliseconds;
+
+          _scanning = false;
+          setState(() {});
+        },
+      ),
     );
   }
 }

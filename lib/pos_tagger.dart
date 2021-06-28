@@ -4,32 +4,32 @@ import "dart:math";
 class PosTagger {
   static Future<String> tagText(String input) async {
     String result = "";
-    String clear1 = input.replaceAll(".", " .");
+    String clear = input.replaceAll(".", " .").replaceAll('\n', ' ').replaceAll(',', ' ,').replaceAll('?', ' ?').replaceAll('!', ' !').replaceAll('(', '( ').replaceAll(')', ' )').replaceAll('-', ' - ');
 
-    var words = clear1.split(" ");
+    var words = clear.split(" ");
     for (var word_token in words) {
       var word = word_token.toLowerCase();
-      var max_prob_of_tag = 0;
-      var predicted_tags_with_max_probability = [];
-      predicted_tags_with_max_probability.add("NNP");
+      var maxProbOfTag = 0;
+      var predictedTagsWithMaxProbability = [];
+      predictedTagsWithMaxProbability.add("NNP");
       tag_dict.forEach((key, value) {
-        var prior_of_tag = tag_dict[key] / total_no_of_tags;
-        var word_tag = word + "_" + key;
+        var priorOfTag = tag_dict[key] / total_no_of_tags;
+        var wordTag = word + "_" + key;
 
-        if (word_tag_dict.containsKey(word_tag)) {
-          var likelihood_of_word_given_tag =
-              word_tag_dict[word_tag] / tag_dict[key];
-          var prob_tag_given_word = prior_of_tag * likelihood_of_word_given_tag;
+        if (word_tag_dict.containsKey(wordTag)) {
+          var likelihoodOfWordGivenTag =
+              word_tag_dict[wordTag] / tag_dict[key];
+          var probTagGivenWord = priorOfTag * likelihoodOfWordGivenTag;
 
-          if (prob_tag_given_word > max_prob_of_tag) {
-            predicted_tags_with_max_probability = [];
-            predicted_tags_with_max_probability.add(key);
-          } else if (prob_tag_given_word == max_prob_of_tag) {
-            predicted_tags_with_max_probability.add(key);
+          if (probTagGivenWord > maxProbOfTag) {
+            predictedTagsWithMaxProbability = [];
+            predictedTagsWithMaxProbability.add(key);
+          } else if (probTagGivenWord == maxProbOfTag) {
+            predictedTagsWithMaxProbability.add(key);
           }
         }
       });
-      result += word_token + "_" + getRandomElement(predicted_tags_with_max_probability).toString().toUpperCase() + " ";
+      result += word_token + "_" + getRandomElement(predictedTagsWithMaxProbability).toString().toUpperCase() + " ";
     }
     return result;
   }
