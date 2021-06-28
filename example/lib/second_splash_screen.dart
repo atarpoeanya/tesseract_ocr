@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
 import 'dart:async';
 
-class SecondSplashScreenPage extends StatefulWidget {
+import 'package:tesseract_ocr_example/home_screen.dart';
+
+class SecondSplashScreen extends StatefulWidget {
   @override
-  _SplashScreenPageState createState() => _SplashScreenPageState();
+  _SecondSplashScreenState createState() => _SecondSplashScreenState();
 }
 
-class _SplashScreenPageState extends State<SecondSplashScreenPage>
+class _SecondSplashScreenState extends State<SecondSplashScreen>
   with SingleTickerProviderStateMixin {
 
   @override

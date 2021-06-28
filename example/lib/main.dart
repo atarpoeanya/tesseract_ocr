@@ -10,7 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashScreenPage(),
+      title: 'Scrabble Scramble',
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+        scaffoldBackgroundColor: Color(0xFFF1F4FA),
+      ),
+      home: SplashScreen(),
     );
   }
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'second_screen.dart';
+import 'second_splash_screen.dart';
 import 'dart:async';
 
-class SplashScreenPage extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _SplashScreenPageState createState() => _SplashScreenPageState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenPageState extends State<SplashScreenPage>
+class _SplashScreenState extends State<SplashScreen>
   with SingleTickerProviderStateMixin {
 
   @override
@@ -22,7 +22,7 @@ class _SplashScreenPageState extends State<SplashScreenPage>
     return Timer(duration, () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) {
-          return SecondSplashScreenPage();
+          return SecondSplashScreen();
         }),
       );
     });
