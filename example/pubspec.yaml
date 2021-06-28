@@ -1,6 +1,6 @@
 name: tesseract_ocr_example
 description: Demonstrates how to use the tesseract_ocr plugin.
-publish_to: 'none'
+publish_to: "none"
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -27,7 +27,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -36,6 +35,8 @@ flutter:
     - ../images/
     - assets/
     - assets/tessdata/
+    - images\tutwuri.png
+    - images\mame.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
