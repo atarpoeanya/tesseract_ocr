@@ -41,36 +41,19 @@ class _ListScreenState extends State<ListScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                  child: Text('Select image'),
-                  onPressed: () async {
-                    var file = await FilePicker.getFilePath(type: FileType.image);
-                    _scanning = true;
-                    setState(() {});
-
-                    var watch = Stopwatch()..start();
-                    var _extractTextOcr = await TesseractOcr.extractText(file);
-                    _extractText = await PosTagger.tagText(_extractTextOcr);
-                    _scanTime = watch.elapsedMilliseconds;
-
-                    _scanning = false;
-                    setState(() {});
-                  },
-                ),
-                // It doesn't spin, because scanning hangs thread for now
                 _scanning
                     ? SpinKitCircle(
                         color: Colors.black,
                       )
                     : Icon(Icons.done),
+                Text(
+                  'Scanning took $_scanTime ms',
+                  style: TextStyle(color: Colors.red),
+                ),
               ],
             ),
             SizedBox(
               height: 16,
-            ),
-            Text(
-              'Scanning took $_scanTime ms',
-              style: TextStyle(color: Colors.red),
             ),
             SizedBox(
               height: 16,
